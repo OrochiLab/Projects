@@ -2,6 +2,7 @@
 require_once('Etudiant.class.php');
 require_once('Database.class.php');
 require_once('FiliereManager.class.php');
+require_once('SessionManager.class.php');
 
 class EtudiantManager
 {
@@ -15,6 +16,7 @@ class EtudiantManager
 			{
 				$filiere = FiliereManager::getById($donnes['id_fil']);
 				$etudiant = new Etudiant($donnes['nom'],$donnes['prenom'],$donnes['CNE'],$donnes['CIN'],$donnes['date_naissance'],$filiere);
+				SessionManager::Connecter($etudiant);
 				return $etudiant;
 			}
 			else

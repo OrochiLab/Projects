@@ -1,69 +1,67 @@
-<?php 
-	// redevinition du nave
+<?php
+require_once('Metier/Database.class.php');
+require_once('Metier/EtudiantManager.class.php');
+require_once('Metier/DemandeManager.class.php');
+
+if(isset($_POST['cne']) or isset($_SESSION['cne']))
+{	
+		$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
+		header('Location : http://www.google.com');
 ?>
-
-
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion Scolaire | Etudiants</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
   	  	<div class="off-canvas-wrap" data-offcanvas>
+		
+		
 		  <div class="inner-wrap">
-		    <nav class="tab-bar">
-
-		      <section class="middle tab-bar-section">
-		        <h1 class="title">Ensa Khouribga 2014</h1>
-		      </section>
-
-		      <section class="right-small">
-		        <a class="right-off-canvas-toggle menu-icon" ><span></span></a>
-		      </section>
-		    </nav>
-
-		    <!-- Profil menu in the right corner -->
-		    <aside class="right-off-canvas-menu">
-		      <ul class="off-canvas-list">
-		        <li><label>Profil</label></li>
-		        <li><img src="img/test.jpg"></li>
-		        <li><a href="#">Nom : NOMETUDIANT</a></li>
-		        <li><a href="#">Date last connection : xx/xx/xxxx</a></li>
-			    
-		        <li><a href="#">nbr de connexion:xxx </a></li>
-		      </ul>
-		    </aside>
-
+		    
+			
 		    <section class="main-section">
 		      <!-- content goes here -->
-		     <div class="row">
-				<div class="large-12 columns">
-					<div class="panel">
-						<h1>Salut {$_SESSION[Nom]} !</h1>
-					</div>
-						<div class="row"><br></div>
-
-							<div data-alert class="row alert-box">
-							  <!-- Your content goes here -->
-							  Bienvenue a votre espace etudiant!
-							  </div>
-							<div class="row">
-								<blockquote> Ecole Nationale des Sciences Appliquées Khouribga 2014.<cite>M<sup>ed</sup> Amine & Mouad</cite></blockquote>
-							</div>
-							<div class="row">
-								<div class="large-12 colums">
-									<ul class="">
-										<li><a  href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
-										<li><a  href="#" data-reveal-id="myModal_2">Demande de certificat</a></li>
-									</ul>
+				<div class="large-12">
+				
+					
+					<!--<div class="panel">
+						<h1>Bienvenue ...</h1>
+					</div>-->
+					
+							<div class="row"><br></div>
+						<?php
+						if(isset($etudiant))
+						{
+						?>
+							<ul class="pricing-table">
+								<div data-alert class="alert-box">
+								<!-- Your content goes here -->
+								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant!
 								</div>
-							</div>
+								<blockquote>Vous avez la possibilité de consulter vos informations,
+								lister les demandes d'attestations et leurs état, et en faire des nouvelles.<cite>M<sup>ed</sup> Amine & Mouad</cite>
+								</blockquote>
+							
+								<li class="title">Vos informations :</li>
+								<li class="bullet-item">CNE : <?php echo $etudiant->getCne(); ?></li>
+								<li class="bullet-item">CIN : <?php echo $etudiant->getCin(); ?></li>
+								<li class="bullet-item">Nom & Prenom : <?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></li>
+								<li class="bullet-item">Date de naissance : <?php echo $etudiant->getDate_Naissance(); ?></li>
+								
+								<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
+							
+							</ul>
+							
+							
+						<?php
+						}
+						else
+						{
+						?>
+						<div data-alert class="alert-box alert radius" style="opacity:0.8">
+						CNE incorrect, étudiant introuvable dans la base de donnée.<br/>
+						<a href="?page=etudiant">Retour</a>
+						</div>
+						
+						<?php
+						}
+						?>
 				</div>
-			</div>
 			</section>
 			  <a class="exit-off-canvas"></a>
 		  </div>
@@ -129,7 +127,17 @@
 		</div>
 		<!-- Affichage des demandes & et l'envoie d'une-->
 
-  </body>
+<?php
+}
+else
+{?>
+						<div data-alert class="alert-box alert radius" style="opacity:0.8">
+						Erreur 404 : Access Denied<br/>
+						<a href="?page=accueil">Retour</a>
+						</div>
+<?php
+}
+?>
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
@@ -137,5 +145,3 @@
     </script>
     <script type="text/javascript" src="js/news.js"></script>
     <script type="text/javascript" src="js/Ajaxification.js"></script>
-  </body>
-</html>

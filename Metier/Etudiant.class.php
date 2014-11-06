@@ -2,7 +2,6 @@
 	require_once('Personne.class.php');
 	require_once('Filiere.class.php');
 	require_once('Database.class.php');
-	require_once('../config.inc.php');
 
 	/**
 	* 

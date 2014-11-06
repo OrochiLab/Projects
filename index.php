@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if(!isset($_GET['page']))
+	$_GET['page']='accueil';
+	
+if($_GET['page']=='Deconnexion')
+{
+	$_SESSION = array();
+	session_destroy();
+}
+
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -10,21 +21,47 @@
     <script src="js/vendor/modernizr.js"></script>
   </head>
   <body>
-  <?php
-  	if (isset($_GET['page']) and $_GET['page'] != 'Espace_de_gestion_etudiant') {
-  ?>
+	<div class="row large-12">
   		<nav class="top-bar foundation-bar" data-topbar>
-		  <ul class="title-area">
-		    <li class="name">
-		     <span data-tooltip class="has-tip" title="Try resizing your browser to see how the grid stacks"><h1 class="show-for-small-only"><a href="#">Small screen</a></h1></span>
-		     <span data-tooltip class="has-tip" title="Try resizing your browser to see how the grid stacks"><h1 class="show-for-medium-only"><a href="#">Medium Screen</a></h1></span>
-		     <span data-tooltip class="has-tip" title="Try resizing your browser to see how the grid stacks"><h1 class="show-for-large-only"><a href="#">Large screen</a></h1></span>
-		    </li>
-		  </ul>
-		</nav>
-  <?php	# code...
-  	}
-  ?>
+				<ul class="title-area">
+					<li class="name">
+					<h1><a href="?page=accueil">ENSA Khouribga</a></h1>
+					</li>
+				</ul>
+			
+			<section class="top-bar-section">
+				<ul class="right">
+					<?php
+					if(isset($_SESSION['cne']))
+					{
+					?>
+					<li class="divider"></li>
+					<li><a href="?page=espace_demandes_etudiant">Demandes d'attestation</a></li>
+					<li class="divider"></li>
+					<li class="active has-dropdown"><a href="?page=Espace_de_gestion_etudiant">Profil : <?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
+					<ul class="dropdown">
+                    <li><a href="?page=Deconnexion">Se Deconnecter</a></li>
+					</ul>
+					</li>
+					<?php
+					}
+					else
+					{
+					?>
+					<li class="divider"></li>
+					<li><a href="?page=etudiant">Espace Etudiant</a></li>
+					<li class="divider"></li>
+					<li><a href="?page=administration">Espace Administration</a></li>
+					<?php
+					}
+					?>
+				</ul>
+				</section>
+				
+			</nav>
+	</div>
+	<div class="row">
+	<div class="large-12">
 	<?php
 	require('config.inc.php');
 	
@@ -53,6 +90,10 @@
 				include('/Pages/espace_gestion_etudiant.php');
 				break;
 
+				case 'espace_demandes_etudiant':
+				include('/Pages/espace_demandes_etudiant.php');
+				break;
+				
 				default:
 				include('/Pages/accueil.php');
 				break;
@@ -63,10 +104,12 @@
 			include('/Pages/accueil.php');
 		}
 	?>
+	</div>
+	</div>
 	<!-- fouter -->
 <div id="footer">
 	<footer class="row">
-		<div class="large-12 columns"><hr>
+		<div class="large-12"><hr>
 			<div class="row">
 				<div class="large-6 columns">
 					<p><small>© Copyright  Med Amine OUASMINE & Mouad MORABIT 2014.</small></p>
@@ -86,6 +129,7 @@
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
+     $(document).foundation();
 	 $(window).bind("load", function () {
     var footer = $("#footer");
     var pos = footer.position();
