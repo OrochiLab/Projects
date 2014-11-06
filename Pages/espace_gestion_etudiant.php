@@ -57,8 +57,8 @@
 						<div class="row">
 							<div class="large-12 colums">
 								<ul class="">
-									<a  href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
-									<li>Demande de certificat</li>
+									<li><a  href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
+									<li><a  href="#" data-reveal-id="myModal_2">Demande de certificat</a></li>
 								</ul>
 							</div>
 						</div>
@@ -123,6 +123,11 @@
 	</div>
 	<!-- Demande modifications des données-->
 
+	<!-- Affichage des demandes & et l'envoie d'une-->
+	<div id="myModal_2" class="reveal-modal">
+		<p>liste des demandes avec le choix de d'envoyer une demandes</p>
+	</div>
+	<!-- Affichage des demandes & et l'envoie d'une-->
 
   </body>
 	<script src="js/vendor/jquery.js"></script>
