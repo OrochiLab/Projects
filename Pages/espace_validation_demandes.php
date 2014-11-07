@@ -106,7 +106,7 @@ if(isset($_SESSION['login']))
 					else
 					{
 					?>
-					<a href="../Projects/Pages/Pdf_admin.php?nomAdmin=<?php echo $_SESSION['nom'];?>&ID_Etudiant=<?php echo $demandes[$i]->getEtudiant()->getCne();?>" class="button tiny" />Télécharger
+					<a href="../Projects/Pages/Pdf_admin.php?nomAdmin=<?php echo $_SESSION['nom'];?>&prenomAdmin=<?php echo $_SESSION['prenom'];?>&ID_Etudiant=<?php echo $demandes[$i]->getEtudiant()->getCne();?>" class="button tiny" />Télécharger
 					<?php
 					}
 					?>

@@ -48,16 +48,37 @@
 				$this->AddPage();
 				$this->SetFont('Times','',12);
 				$this->Ln(35);
-				$a= $_SESSION['nom'];
-				$aa= $_SESSION['prenom'];
-				$b=$Etudiant->getNom();
-				$bb=$Etudiant->getPrenom();
-				$c=$Etudiant->getDate_naissance();
-				$d="Cycle ingénierie - - ".$Etudiant->Filiere()." à ENSA, Khouribga";
-				$this->MultiCell(0,10,utf8_decode("Je soussigné, ".$a." ".$aa.", Président de l'Ecole Nationale de Sciences Appliquées de Khouribga,certifie que l'élève ".$b.", né(e) le ".$c." ,est régulièrement inscrit(e) à l'école pour l'année universitaire 2014-2015 en classe de :"));
+				$a= $nomAdmin;
+				$aa= $prenomAdmin;
+				$b=$etudiant->getNom();
+				$bb=$etudiant->getPrenom();
+				$c=$etudiant->getDate_naissance();
+				$d=$etudiant->getFiliere()->getLibelle();
+				$cne=$etudiant->getcne();
+				$cin=$etudiant->getcin();
+
+				$this->MultiCell(0,10,utf8_decode("Je soussigné, ".$a." ".$aa.", Président de l'Ecole Nationale de Sciences Appliquées de Khouribga,certifie que l'élève ".$b." ".$bb.", né(e) le ".$c." ,est régulièrement inscrit(e) à l'école pour l'année universitaire 2014-2015 en classe de :"));
 				$this->SetFont('Times','B',12);
-				$this->MultiCell(0,10,utf8_decode($d));
-				$this->SetFont('Times','',12);
+				$this->MultiCell(0,10,utf8_decode("Cycle ingénierie - - ".$d." à ENSA, Khouribga"));
+				$this->SetFont('Times','B',12);
+				$this->Ln(15);
+				$this->Cell(30);
+				$this->MultiCell(0,10,utf8_decode("NOM : {$b}"));
+				$this->Ln(3);
+				$this->Cell(30);
+				$this->MultiCell(0,10,utf8_decode("PRENOM : {$bb}"));
+				$this->Ln(3);
+				$this->Cell(30);
+				$this->MultiCell(0,10,utf8_decode("CNE : {$cne}"));
+				$this->Ln(3);
+				$this->Cell(30);
+				$this->MultiCell(0,10,utf8_decode("CIN : {$cin}"));
+				$this->Ln(3);
+				$this->Cell(30);
+				$this->MultiCell(0,10,utf8_decode("DATE NAISSANCE : {$c}"));
+
+				$this->Ln(40);
+				$this->MultiCell(0,10,utf8_decode("Signature et Cachet"));
 				$this->Output();
 			}
 		}
