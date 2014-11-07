@@ -191,5 +191,6 @@ if($_GET['page']=='Deconnexion')
     }
 });
 </script>
+<script type="text/javascript" src="js/Ajax.js"></script>
   </body>
 </html>
