@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 07 Novembre 2014 à 12:43
+-- Généré le: Ven 07 Novembre 2014 à 17:48
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -61,14 +61,15 @@ CREATE TABLE IF NOT EXISTS `correction` (
   `etat` enum('En Attente','Acceptée','Refusée') NOT NULL DEFAULT 'En Attente',
   PRIMARY KEY (`id`),
   KEY `cne` (`cne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `correction`
 --
 
 INSERT INTO `correction` (`id`, `date_demandec`, `cin`, `nom`, `prenom`, `date_naissance`, `email`, `cne`, `etat`) VALUES
-(3, '2014-08-10 02:36:37', 'BK275058', 'Morabit', 'Mouad', '1993-08-11', 'lolilol@lol.com', '1129377653', 'Acceptée');
+(3, '2014-08-10 02:36:37', 'BK275058', 'Morabit', 'Mouad', '1993-08-11', 'lolilol@lol.com', '1129377653', 'Acceptée'),
+(4, '2014-11-07 16:03:07', 'AB234567', 'Zine', 'Omar', '1993-11-10', 'omar@imane.com', '1129377641', 'Refusée');
 
 -- --------------------------------------------------------
 
@@ -82,14 +83,19 @@ CREATE TABLE IF NOT EXISTS `demande` (
   `CNE` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `CNE` (`CNE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Contenu de la table `demande`
 --
 
 INSERT INTO `demande` (`id`, `date_demande`, `CNE`) VALUES
-(9, '2014-10-14 01:09:08', '1129377653');
+(9, '2014-10-14 01:09:08', '1129377653'),
+(10, '2014-11-07 14:02:42', '1129294913'),
+(11, '2014-11-07 00:00:00', '1129377653'),
+(12, '2014-11-07 00:00:00', '1129377640'),
+(13, '2014-11-07 00:00:00', '1129377642'),
+(14, '2014-11-07 15:57:55', '1129377641');
 
 -- --------------------------------------------------------
 
@@ -128,6 +134,11 @@ CREATE TABLE IF NOT EXISTS `etudiant` (
 --
 
 INSERT INTO `etudiant` (`CNE`, `CIN`, `nom`, `prenom`, `date_naissance`, `id_fil`) VALUES
+('1129294913', 'wa202424', 'Ouasmine', 'Mohammed Amine', '1992-12-03', 'GI'),
+('1129377640', 'AB123456', 'Zine', 'Imane', '1992-04-07', 'GE'),
+('1129377641', 'AB234567', 'Zine', 'Omar', '1993-11-10', 'GRT'),
+('1129377642', 'AB345678', 'Hamza', 'Kacimi', '1992-11-03', 'GP'),
+('1129377643', 'AB567891', 'Yassine', 'Hasnaoui', '1993-11-20', 'GI'),
 ('1129377653', 'BK275058', 'Morabit', 'Mouad', '1993-08-11', 'GI');
 
 -- --------------------------------------------------------
@@ -197,14 +208,16 @@ CREATE TABLE IF NOT EXISTS `validation` (
   PRIMARY KEY (`id`),
   KEY `id_dem` (`id_dem`),
   KEY `id_admin` (`id_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Contenu de la table `validation`
 --
 
 INSERT INTO `validation` (`id`, `date_validation`, `id_dem`, `id_admin`, `reponse`) VALUES
-(8, '2014-11-07 00:00:00', 9, 1, 'Valide');
+(8, '2014-11-07 00:00:00', 9, 1, 'Valide'),
+(9, '2014-11-07 00:00:00', 10, 1, 'Valide'),
+(10, '2014-11-07 00:00:00', 12, 1, 'Refus');
 
 --
 -- Contraintes pour les tables exportées

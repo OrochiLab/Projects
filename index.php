@@ -8,11 +8,12 @@ if(isset($_POST['cne']))
 {	
 		
 	$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
+	SessionManager::Connecter($etudiant);
 }
 if(isset($_POST['login']) and isset($_POST['password']))
 {
 	$administrateur = AdministrateurManager::getByLogin($_POST['login'],$_POST['password']);
-	
+	SessionManager::Connecter($administrateur);
 }
 
 
@@ -65,7 +66,7 @@ if($_GET['page']=='Deconnexion')
 						?>
 						<li class="has-dropdown"><a href="#">Demandes des étudiants</a>
 						<ul class="dropdown">
-						<li><a href="#">Demandes d'attestation</a></li>
+						<li><a href="?page=espace_validation_demandes">Demandes d'attestation</a></li>
 						<li><a href="#">Demandes de correction</a></li>
 						</ul>
 						</li>
@@ -130,6 +131,10 @@ if($_GET['page']=='Deconnexion')
 				include('/Pages/espace_demandes_etudiant.php');
 				break;
 				
+				case 'espace_validation_demandes':
+				include('/Pages/espace_validation_demandes.php');
+				break;
+				
 				default:
 				include('/Pages/accueil.php');
 				break;
@@ -163,6 +168,8 @@ if($_GET['page']=='Deconnexion')
 	</footer><div>
 	<script type="text/javascript" src="js/Chart.js"></script>
 	<script type="text/javascript" src="js/Chart.min.js"></script>
+	<script type="text/javascript" src="jquery.js" ></script>
+
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">

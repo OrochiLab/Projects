@@ -5,7 +5,7 @@ class CorrectionManager
 {
 	public static function demanderCorrection($cin,$nom,$prenom,$daten,$email,$cne)
 	{
-		$rep = Database::getConnection()->query('select * from correction where cne=\''.$cne.'\' and adddate(date_demandec,INTERVAL 30 DAY)>NOW() or etat<>\'En Attente\' order by date_demandec desc limit 0,1');
+		$rep = Database::getConnection()->query('select * from correction where cne=\''.$cne.'\' and (adddate(date_demandec,INTERVAL 30 DAY)>NOW() or etat<>\'En Attente\') order by date_demandec desc limit 0,1');
 		if($donnes=$rep->fetch())
 		{
 				return 'Orange#Votre demande est refusée, vous avez deja effectué une demande le <strong>'.$donnes['date_demandec'].'</strong>, son état : <strong>'.$donnes['etat'].'</strong></br>Note : Si une demande reste en attente apres 1 mois, vous avez le droit d\'en refaire une.';

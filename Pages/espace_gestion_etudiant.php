@@ -107,13 +107,13 @@ if(isset($_SESSION['cne']))
 					<form data-abide role="form" method="post" action="#">
 					  <div class="name-field">
 					    <label>Votre Nom<small></small>
-					      <input type="text" name ="nom" pattern="^[a-zA-Z]+$" required="required" value="<?php echo $etudiant->getNom(); ?>">
+					      <input type="text" name ="nom" pattern="[a-zA-Z]+" required="required" value="<?php echo $etudiant->getNom(); ?>">
 					    </label>
 					    <small class="error">votre nom doit absolument être composé de caractères aplhabétiques.</small>
 					  </div>
 					  <div class="name-field">
 					    <label>Votre Prenom<small></small>
-					      <input type="text" name="prenom" pattern="^[a-zA-Z]+$" required="required" value="<?php echo $etudiant->getPrenom();?>">
+					      <input type="text" name="prenom" pattern="[a-zA-Z]+" required="required" value="<?php echo $etudiant->getPrenom();?>">
 					    </label>
 					    <small class="error">votre nom doit absolument être composé de caractères aplhabétiques.</small>
 					  </div>

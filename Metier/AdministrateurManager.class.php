@@ -19,7 +19,7 @@ class AdministrateurManager
 			if($donnes=$rep->fetch())
 			{
 				$administrateur = new Administrateur($donnes['nom'],$donnes['prenom'],$donnes['login'],null);
-				SessionManager::Connecter($administrateur);
+
 				return $administrateur;
 			}
 			else

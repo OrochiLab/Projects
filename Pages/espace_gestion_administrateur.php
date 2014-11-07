@@ -1,3 +1,10 @@
+<style type="text/css">
+#stat td,#stat th
+{
+text-align:center;
+}
+</style>
+
 <?php
 if(isset($_SESSION['login']))
 {
@@ -8,48 +15,52 @@ if(isset($_SESSION['login']))
 	  <!-- Your content goes here -->
 	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
-	<div>Liste des filières 2014
-		<blockquote> Ecole Nationale des Sciences Appliquées Khouribga 2014.<cite>M<sup>ed</sup> Amine & Mouad</cite></blockquote>
-	</div>
-	<ul class="pricing-table">
-								
-								<li class="title">Quelques statistiques :</li>
-								<li class="bullet-item">Nombre de demandes d'attestation traités :</li>
-								<li class="bullet-item">Nombre de demandes de correction traités: </li>
-								<li class="bullet-item">Répartition des demandes par filière : </li>
-							
-							</ul>
 	<div>
 		<div class="large-12 colums">
 		
-			<table>
+			<table id="stat" class="medium-6" style="float:left;">
 			  <thead>
 			    <tr>
-			      <th width="800">Fillières</th>
-			      <th width="150">Nombre de demandes</th>
-			      <th width="150">Nombre de demandes Validées</th>
-			      <th width="150">Nombres de demandes Non Validées</th>
-			    </tr>
+			      <th width="800" rowspan="3" style="text-align:center">Fillières</th>
+				  <th colspan="3">Total</th>
+				</tr>
+				<tr>
+					<th colspan="2">Traités</th>
+					<th width="150" rowspan="2">Non traités</th>
+				</tr>
+				<tr>
+					<th width="150">Acceptés</th>
+					<th width="150">Refusés</th>
+				</tr>
 			  </thead>
 			  <tbody>
 			  <?php 
-			  		// while de l'affichage
+			  		$statistiques = DemandeManager::statistiques();
+					foreach($statistiques as $filiere=>$demandes)
+					{
 			  ?>
 			    <tr>
-			      <td>
-			      	<h4><a>Génie Informatique Option Génie Logiciel. </a><br><small><a>Modules Programmation POO </a>:<a>Element1</a> <a>Element2</a> <a>Element2</a></small></h4>
-			      </td>
-			      <td>Close</td>
-			      <td>Discussions: 147 <br> Messages: 3698</td>
-			      <td></td>
+			      <th rowspan="3">
+					<?php echo $demandes['nom_fil']; ?>
+				  </th>
+			      <td><?php echo $demandes['accepte']; ?></td>
+			      <td><?php echo $demandes['refus']; ?></td>
+			      <td rowspan="2"><?php echo $demandes['nontraite']; ?></td>
 			    </tr>
+				<tr>
+					<td colspan="2"><?php echo $demandes['traite']; ?></td>
+				</tr>
+				<tr>
+					<td colspan="3" id="<?php echo $filiere.'total'; ?>"><?php echo $demandes['total']; ?></td>
+				</tr>
 			  <?php
-
+					}
 			  ?>
 			  </tbody>
 			</table>
-			<div class="row">
-			  <div class="medium-3 columns">
+
+			
+			  <!--<div class="medium-3 columns">
 				<div id="canvas-holder" class="small-2 large-4 columns">
 				  		<div style="width:1100%">
 							<canvas id="canvas" height="550" width="550"></canvas>
@@ -59,17 +70,15 @@ if(isset($_SESSION['login']))
 			  </div>
 			  <div class="medium-3 columns">
 			  	
-			  </div>
-			  <div class="medium-5 columns">
-				<div id="canvas-holder" class="small-2 large-4 columns">
-					<canvas id="chart-area-1" width="400" height="400"/>
+			  </div>-->
+			  <div class="medium-6" style="float:right;text-align:center;">
+			  <h5>Répartition des demandes par filière</h5>
+				<div id="canvas-holder" class="small-2 large-4 columns" >
+					<canvas id="graphe-stat" width="500" height="300" />
 				</div>
 			  </div>
-			</div>
+			
 
-			<div class="row">
-
-			</div>
 		</div>
 	</div>
 <?php
@@ -83,42 +92,39 @@ else
 <?php
 }
 ?>
+<script type="text/javascript" src="jquery.js"></script>
 				<script>
 
-						var pieData = [
+						$(document).ready(function(){
+						var valeurs = [
 								{
-									value: 300,
+									value: parseInt($('#GItotal').html()),
 									color:"#F7464A",
 									highlight: "#FF5A5E",
-									label: "Red"
+									label: "Genie Informatique"
 								},
 								{
-									value: 50,
+									value: parseInt($('#GEtotal').html()),
 									color: "#46BFBD",
 									highlight: "#5AD3D1",
-									label: "Green"
+									label: "Genie Electrique\n"
 								},
 								{
-									value: 100,
+									value: parseInt($('#GPtotal').html()),
 									color: "#FDB45C",
 									highlight: "#FFC870",
-									label: "Yellow"
+									label: "Genie Procedès"
 								},
 								{
-									value: 40,
+									value: parseInt($('#GRTtotal').html()),
 									color: "#949FB1",
 									highlight: "#A8B3C5",
-									label: "Grey"
-								},
-								{
-									value: 120,
-									color: "#4D5360",
-									highlight: "#616774",
-									label: "Dark Grey"
+									label: "Genie Réseaux Télécoms"
 								}
 
 							];
-						var radarChartData = {
+						
+						/*var radarChartData = {
 							labels: ["Demandes Traitées", "Demandes Non-Traitées","Demandes Refusées"],
 							datasets: [
 								{
@@ -165,12 +171,14 @@ else
 									data: [20,25,10]
 								}
 							]
-						};
+						};*/
 						window.onload = function(){
-							var ctx_1 = document.getElementById("chart-area-1").getContext("2d");
-							window.myPie = new Chart(ctx_1).Pie(pieData);
-							window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
+
+							var context = document.getElementById("graphe-stat").getContext("2d");
+							window.myPie = new Chart(context).Pie(valeurs);
+							/*window.myRadar = new Chart(document.getElementById("canvas").getContext("2d")).Radar(radarChartData, {
 								responsive: true
-							});
+							});*/
 						}
+						});
 				</script>

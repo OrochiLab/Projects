@@ -8,7 +8,7 @@ class DemandeManager
 {
 	
 	public static function getByEtudiant(Etudiant $etud)
-		{
+	{
 			$rep =Database::getConnection()->query('select *,d.id as dem from demande d LEFT OUTER JOIN validation v ON d.id=v.id_dem where CNE=\''.$etud->getCne().'\'');
 			$demandes=array();
 			while($donnes=$rep->fetch())
@@ -19,7 +19,22 @@ class DemandeManager
 			return $demandes;
 			
 			
-		}
+	}
+		
+	public static function readAll()
+	{
+			$rep =Database::getConnection()->query('select *,d.id as dem from demande d LEFT OUTER JOIN validation v ON d.id=v.id_dem order by date_demande desc');
+			$demandes=array();
+			while($donnes=$rep->fetch())
+			{
+				$demandes[]=new Demande($donnes['dem'],$donnes['date_demande'],EtudiantManager::getById($donnes['CNE']),new Validation($donnes['date_validation'],$donnes['reponse']));
+				
+			}
+			return $demandes;
+			
+			
+	}
+	
 public static function passerDemande($cne)
 		{
 			try{
@@ -53,6 +68,17 @@ public static function passerDemande($cne)
 				die('Erreur : '.$e->getMessage());
 			}
 		}
+		
+		public static function statistiques()
+		{
+			$rep =Database::getConnection()->query('select e.id_fil,f.libelle,count(d.id) as total,(count(d.id)-sum(IF(IFNULL(v.id,0)=0,0,1))) as nontraite,sum(IF(IFNULL(v.id,0)=0,0,1)) as traite,sum(IF(reponse=\'Valide\',1,0)) as accepte,sum(IF(reponse=\'Refus\',1,0)) as refus from etudiant e LEFT OUTER JOIN demande d ON d.cne=e.cne LEFT OUTER JOIN validation v ON v.id_dem=d.id INNER JOIN filiere f ON e.id_fil=f.id group by e.id_fil,f.libelle');
+			$statistiques=array();
+			while($donnes=$rep->fetch())
+			{
+				$statistiques[$donnes['id_fil']]=array('nom_fil'=>$donnes['libelle'],'total'=>$donnes['total'],'nontraite'=>$donnes['nontraite'],'traite'=>$donnes['traite'],'accepte'=>$donnes['accepte'],'refus'=>$donnes['refus']);
+			}
+			return $statistiques;
+			
+		}
 }
-
 ?>
