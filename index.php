@@ -161,7 +161,8 @@ if($_GET['page']=='Deconnexion')
 			</div>
 		</div>
 	</footer><div>
-
+	<script type="text/javascript" src="js/Chart.js"></script>
+	<script type="text/javascript" src="js/Chart.min.js"></script>
 	<script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script type="text/javascript">
