@@ -3,6 +3,14 @@
 {
 text-align:center;
 }
+.green
+{
+color:green;
+}
+.red
+{
+color:red;
+}
 </style>
 <?php
 require_once('Metier/CorrectionManager.class.php');
@@ -76,23 +84,23 @@ if(isset($_SESSION['login']))
 				{
 				?>
 				<tr>
-					<th><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></th>
-					<th><?php echo $corrections[$i]->getDate_Correction(); ?></th>
+					<td><strong><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></strong></td>
+					<td><?php echo $corrections[$i]->getDate_Correction(); ?></td>
 					
-					<th><?php echo $corrections[$i]->getCin(); ?></th>
-					<th><?php echo $corrections[$i]->getEtudiant()->getCin(); ?></th>
+					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getCin(); ?></td>
+					<td class="green"><?php echo $corrections[$i]->getCin(); ?></td>
 					
-					<th><?php echo $corrections[$i]->getNom(); ?></th>
-					<th><?php echo $corrections[$i]->getEtudiant()->getNom(); ?></th>
+					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getNom(); ?></td>
+					<td class="green"><?php echo $corrections[$i]->getNom(); ?></td>
 					
-					<th><?php echo $corrections[$i]->getPrenom(); ?></th>
-					<th><?php echo $corrections[$i]->getEtudiant()->getPrenom(); ?></th>
+					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getPrenom(); ?></td>
+					<td class="green"><?php echo $corrections[$i]->getPrenom(); ?></td>
 					
-					<th><?php echo $corrections[$i]->getDate_Naissance(); ?></th>
-					<th><?php echo $corrections[$i]->getEtudiant()->getDate_Naissance(); ?></th>
+					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getDate_Naissance(); ?></td>
+					<td class="green"><?php echo $corrections[$i]->getDate_Naissance(); ?></td>
 					
-					<th><?php echo $corrections[$i]->getEtat(); ?></th>
-					<th>
+					<td><strong><?php echo $corrections[$i]->getEtat(); ?></strong></td>
+					<td>
 					<form action="#" method="post">
 					<input type="hidden" name="demande" value="<?php echo $corrections[$i]->getId(); ?>" />
 					<?php
@@ -112,7 +120,7 @@ if(isset($_SESSION['login']))
 					}
 					?>
 					</form>	
-					</th>
+					</td>
 				</tr>
 				<?php
 				}
