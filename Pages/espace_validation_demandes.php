@@ -80,7 +80,7 @@ if(isset($_SESSION['login']))
 				?>
 				<tr class="row-<?php echo $demandes[$i]->getEtudiant()->getFiliere()->getId();?> row-<?php echo ($demandes[$i]->getValidation()->getReponse()=='Refus')?'REF':(($demandes[$i]->getValidation()->getReponse()=='Valide')?'VAL':'ATT');?>">
 					<th><?php echo $demandes[$i]->getId(); ?></th>
-					<th><?php echo $demandes[$i]->getEtudiant()->getNom().' '.$demandes[$i]->getEtudiant()->getPrenom(); ?></th>
+					<th><a href="?page=details_etudiant&cne=<?php echo $demandes[$i]->getEtudiant()->getCne(); ?>"><?php echo $demandes[$i]->getEtudiant()->getNom().' '.$demandes[$i]->getEtudiant()->getPrenom(); ?></a></th>
 					<th><?php echo $demandes[$i]->getEtudiant()->getFiliere()->getLibelle(); ?></th>
 					<th><?php echo $demandes[$i]->getDate_Demande(); ?></th>
 					<th><?php echo ($demandes[$i]->getValidation()->getReponse()=='Refus')?'Refusée':(($demandes[$i]->getValidation()->getReponse()=='Valide')?'Acceptée':'En Attente...');?></th>

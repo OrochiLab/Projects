@@ -84,7 +84,7 @@ if(isset($_SESSION['login']))
 				{
 				?>
 				<tr>
-					<td><strong><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></strong></td>
+					<td><a href="?page=details_etudiant&cne=<?php echo $corrections[$i]->getEtudiant()->getCne(); ?>"><strong><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></strong></a></td>
 					<td><?php echo $corrections[$i]->getDate_Correction(); ?></td>
 					
 					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getCin(); ?></td>

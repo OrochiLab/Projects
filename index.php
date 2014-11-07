@@ -139,6 +139,10 @@ if($_GET['page']=='Deconnexion')
 				include('/Pages/espace_validation_corrections.php');
 				break;
 				
+				case 'details_etudiant':
+				include('/Pages/details_etudiant.php');
+				break;
+				
 				default:
 				include('/Pages/accueil.php');
 				break;
