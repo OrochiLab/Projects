@@ -1,6 +1,6 @@
 <?php
 		require_once('../pdf/fpdf.php');
-		
+		require_once('../Metier/Etudiant.class.php');
 		class PDF extends FPDF
 		{
 		// En-tête
@@ -38,21 +38,30 @@
 			    // Numéro de page
 			    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 			}
+		
+			//print pdf demande
+
+			function print_certificat($nomAdmin,$prenomAdmin,Etudiant $etudiant)
+			{
+				// Instanciation de la classe dérivée
+				$this->AliasNbPages();
+				$this->AddPage();
+				$this->SetFont('Times','',12);
+				$this->Ln(35);
+				$a= $_SESSION['nom'];
+				$aa= $_SESSION['prenom'];
+				$b=$Etudiant->getNom();
+				$bb=$Etudiant->getPrenom();
+				$c=$Etudiant->getDate_naissance();
+				$d="Cycle ingénierie - - ".$Etudiant->Filiere()." à ENSA, Khouribga";
+				$this->MultiCell(0,10,utf8_decode("Je soussigné, ".$a." ".$aa.", Président de l'Ecole Nationale de Sciences Appliquées de Khouribga,certifie que l'élève ".$b.", né(e) le ".$c." ,est régulièrement inscrit(e) à l'école pour l'année universitaire 2014-2015 en classe de :"));
+				$this->SetFont('Times','B',12);
+				$this->MultiCell(0,10,utf8_decode($d));
+				$this->SetFont('Times','',12);
+				$this->Output();
+			}
 		}
 
-		// Instanciation de la classe dérivée
-		$pdf = new PDF();
-		$pdf->AliasNbPages();
-		$pdf->AddPage();
-		$pdf->SetFont('Times','',12);
-		$pdf->Ln(35);
-		$a="Amine";
-		$b="OUASMINE Mohammed Amine";
-		$c="03/12/1992";
-		$d="Deuxième année du cycle ingénierie - Ingé 2 - Génie Informatique à ENSA, Khouribga";
-		$pdf->MultiCell(0,10,utf8_decode("Je soussigné, ".$a.", Président de l'Ecole Nationale de Sciences Appliquées de Khouribga,certifie que l'élève ".$b.", né(e) le ".$c." ,est régulièrement inscrit(e) à l'école pour l'année universitaire 2014-2015 en classe de :"));
-		$pdf->SetFont('Times','B',12);
-		$pdf->MultiCell(0,10,utf8_decode($d));
-		$pdf->SetFont('Times','',12);
-		$pdf->Output();
+		
+		
 ?>

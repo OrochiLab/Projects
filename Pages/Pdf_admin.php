@@ -8,7 +8,7 @@
 	// recuperation de l'objet Etudiant correspondant au id 
 		$etd = EtudiantManager::getById($_GET['ID_Etudiant']);
 
-		$etd->getCne();
+		echo $etd->getNom();
 /*
 	// Instanciation de la classe dérivée
 		$pdf = new PDF();
