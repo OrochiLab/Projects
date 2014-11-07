@@ -1,9 +1,13 @@
-
+﻿
 
 
 <!-- S'authentifier-->
 		<div  class="large-12 colums" width="500" data-reveal>
 			<br/><br/>
+			<?php
+			if(!isset($_SESSION['type']))
+			{
+			?>
 			<h4>Connexion</h4>
 			<br/>
 			<div class="row">
@@ -25,5 +29,17 @@
 					</form>
 				</div>
 			</div>
+			<?php
+			}
+			else
+			{
+			?>
+			<div data-alert class="alert-box alert radius" style="opacity:0.8">
+			Erreur, Vous êtes déjà connecté.<br/>
+			<a href="?page=accueil">Retour</a>
+			</div>
+			<?php
+			}
+			?>
 		</div>
 		<!-- S'authentifier-->
