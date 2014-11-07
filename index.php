@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('Metier/DemandeManager.class.php');
 
 if(!isset($_GET['page']))
 	$_GET['page']='accueil';

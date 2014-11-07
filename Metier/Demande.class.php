@@ -1,6 +1,6 @@
 <?php
-	require_once('Etudiant.Class.php');
-
+	require_once('Etudiant.class.php');
+	require_once('Validation.class.php');
 	/**
 	* 
 	*/
@@ -9,14 +9,15 @@
 		private $id;
 		private $etudiant;
 		private $date_demande;
+		private $validation;
 		
-		
-		function __construct($id,$date_demande,Etudiant $etudiant)
+		function __construct($id,$date_demande,Etudiant $etudiant,Validation $validation)
 		{
 			# code...
 			$this->id=$id;
 			$this->etudiant = $etudiant;
 			$this->date_demande = $date_demande;
+			$this->validation = $validation;
 		}
 		public function setId($id)
 		{
@@ -45,7 +46,16 @@
 		{
 			return $this->date_demande;
 		}
-
+		
+		function setValidation(Validation $validation)
+		{
+			$this->validation = $validation;
+		}
+		
+		function getValidation()
+		{
+			return $this->validation;
+		}
 		
 	}
 

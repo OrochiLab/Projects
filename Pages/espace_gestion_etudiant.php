@@ -42,7 +42,7 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 								<li class="bullet-item">CIN : <?php echo $etudiant->getCin(); ?></li>
 								<li class="bullet-item">Nom & Prenom : <?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></li>
 								<li class="bullet-item">Date de naissance : <?php echo $etudiant->getDate_Naissance(); ?></li>
-								
+								<li class="bullet-item">Filière : <?php echo $etudiant->getFiliere()->getLibelle(); ?></li>
 								<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
 							
 							</ul>
@@ -78,32 +78,31 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 		</style>
 		<!-- Demande modifications des données-->
 		<div id="myModal_1"class="reveal-modal" width="100px" data-reveal>
-			<h2>Demande modifications</h2>
-			<p class="lead">Renseignements obligatoires.</p>
+			<h4>Demande de modification</h4>
 			<div class="row collapse">
 				<div class="large-12 columns">
 					<form data-abide role="form" novalidate action="">
 					  <div class="name-field">
-					    <label>Votre Nom complet <small></small>
-					      <input type="text" name ="nom" pattern="[a-zA-Z]+">
+					    <label>Votre Nom<small></small>
+					      <input type="text" name ="nom" pattern="^[a-zA-Z]+$" required="required" value="<?php echo $etudiant->getNom(); ?>">
 					    </label>
-					    <small class="error">votre nom doit absolument être composé de caractaires aplhabétiques.</small>
+					    <small class="error">votre nom doit absolument être composé de caractères aplhabétiques.</small>
 					  </div>
 					  <div class="name-field">
-					    <label>Votre Prenom <small></small>
-					      <input type="text" name="prenom" pattern="[a-zA-Z]+">
+					    <label>Votre Prenom<small></small>
+					      <input type="text" name="prenom" pattern="^[a-zA-Z]+$" required="required" value="<?php echo $etudiant->getPrenom();?>">
 					    </label>
-					    <small class="error">votre nom doit absolument être composé de caractaires aplhabétiques.</small>
+					    <small class="error">votre nom doit absolument être composé de caractères aplhabétiques.</small>
 					  </div>
 					  <div class="name-field">
 					    <label>Votre CNE* <small>*Code National Etudiant.</small>
-					      <input type="text" name="cne" id="cne" pattern="[0-9]{10}">
+					      <input type="text" name="cne" id="cne" pattern="^[0-9]{10}$" required="required" value="<?php echo $etudiant->getCne();?>">
 					    </label>
 					    <small class="error">votre CNE doit absolument être composé de 10 chiffres.</small>
 					  </div>
 					  <div class="name-field">
 					    <label>Votre CIN* <small>*Carte Identitée Nationale.</small>
-					      <input type="text" name="cin" id="cin" pattern="[a-zA-Z0-9]+" >
+					      <input type="text" name="cin" id="cin" pattern="^[a-zA-Z0-9]+$" required="required" value="<?php echo $etudiant->getCin();?>">
 					    </label>
 					    <small class="error">votre CIN doit absolument être composé d'un combinaison des caractaires alphanumeriques.</small>
 					  </div>

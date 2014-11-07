@@ -9,51 +9,47 @@
 	{
 		private $date_validation;
 		private $administrateur;
-		private $demande;
+		private $reponse;
 		
-		function __construct(Administrateur $administrateur,Demande $demande,$date_validation)
+		
+		 function __construct($date_validation,$reponse)
 		{
-			$this->administrateur = $administrateur;
-			$this->demande = $demande;
+			//$this->administrateur = $administrateur;
 			$this->date_validation = $date_validation;
+			$this->reponse=$reponse;
 		}
 
-		function setAdministrateur($newAdministrateur)
+		public function setAdministrateur($newAdministrateur)
 		{	
 			$this->administrateur = $newAdministrateur;
 		}
 
-		function getAdministrateur()
+		public function getAdministrateur()
 		{
 			return $this->administrateur;
 		}
 
-		function setDemande($newDemande)
-		{	
-			$this->demande = $newDemande;
-		}
 
-		function getDemande()
-		{
-			return $this->demande;
-		}
-
-		function setDate_validation($newDate_validation)
+		public function setDate_validation($newDate_validation)
 		{	
 			$this->date_validation = $newDate_validation;
 		}
 
-		function getDate_validation()
+		public function getDate_validation()
 		{
 			return $this->date_validation;
 		}
 		
+		public function setReponse($reponse)
+		{
+			$this->reponse=$reponse;
+		}
+		
+		public function getReponse()
+		{
+			return $this->reponse;
+		}
 		
 	}
 
-	$admin = new Administrateur('OUASMINE','Med Amine','MedAmineOsm','******');
-	$demande = new Demande($amine,'05/11/2014');
-	$valid = new Validation($admin,$demande,'10/10/1010');
-	echo $valid->getDate_validation();
-	echo $valid->getAdministrateur()->getNom();
 ?>

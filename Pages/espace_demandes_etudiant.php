@@ -6,6 +6,16 @@ require_once('Metier/DemandeManager.class.php');
 if(isset($_SESSION['cne']))
 {	
 		$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
+		
+		if(isset($_POST['btn']))
+		{		
+		$resultat = DemandeManager::passerDemande($etudiant->getCne());
+		$alert_type = (explode("#",$resultat)[0]=='Rouge')?"alert":((explode("#",$resultat)[0]=='Orange')?"warning":"success");
+		$resultat = explode('#',$resultat)[1];
+		}
+		
+		$demandes = DemandeManager::getByEtudiant($etudiant);
+		
 ?>
   	  	<div class="off-canvas-wrap" data-offcanvas>
 		
@@ -27,29 +37,50 @@ if(isset($_SESSION['cne']))
 							<ul class="pricing-table">
 								<div data-alert class="alert-box">
 								<!-- Your content goes here -->
-								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant!
+								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant, quelques informations à savoir à propos des demandes :<br/><br/>
+								- Une demande par semaine ( pour éviter l'abus de demandes )<br/>
+								- Une attestation validée par mois au maximum
 								</div>
-								<table class="large-12">
+								<?php
+								if(isset($_POST['btn']))
+								{
+								?>
+								<div data-alert class="alert-box <?php echo $alert_type; ?> radius">
+								<?php echo $resultat; ?>
+								<a href="#" class="close">&times;</a>
+								</div>
+								<?php
+								}
+								?>
+								
+								<table class="large-12" >
 									<thead>
 										<tr>
 											<th width="150">Num Demande</th>
 											<th width="150">Date demande</th>
 											<th width="150">Etat de la demande</th>
-											<th width="150">Commentaire</th>
 										</tr>
 									</thead>
 									<tbody>
+									<?php 
+									for($i=0;$i<count($demandes);$i++)
+									{
+									?>
 									<tr>
-										<td>#1</td>
-										<td>06/11/2014 20:22</td>
-										<td>Validé le 06/11/2014/ 20:23</td>
-										<td>Commentaire.........................................................</td>
+										<td>#<?php echo $demandes[$i]->getId(); ?></td>
+										<td><?php echo $demandes[$i]->getDate_Demande(); ?></td>
+										<td><?php  $val = $demandes[$i]->getValidation()->getReponse(); echo (isset($val)?($demandes[$i]->getValidation()->getReponse().' le '.$demandes[$i]->getValidation()->getDate_Validation()):"En Attente"); ?></td>
 									</tr>
+									<?php
+									}
+									?>
 									</tbody>
 								</table>
-							
-								<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_2">Demander une attestation	</a></li>
-							
+								
+								<!--<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_2" Demander une attestation	</a></li>-->
+								 <form method="post" action="#">
+								 <li class="cta-button"><a><button class="button small" type="submit" name="btn">Demander une attestation</button></a></li>
+								</form>
 							</ul>
 							
 							
