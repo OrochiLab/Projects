@@ -67,7 +67,7 @@ if($_GET['page']=='Deconnexion')
 						<li class="has-dropdown"><a href="#">Demandes des étudiants</a>
 						<ul class="dropdown">
 						<li class=" <?php if($_GET['page']=='espace_validation_demandes' ) echo 'active' ?>" ><a href="?page=espace_validation_demandes">Demandes d'attestation</a></li>
-						<li><a href="#">Demandes de correction</a></li>
+						<li class=" <?php if($_GET['page']=='espace_validation_corrections' ) echo 'active' ?>" ><a href="?page=espace_validation_corrections">Demandes de correction</a></li>
 						</ul>
 						</li>
 						<?php
@@ -133,6 +133,10 @@ if($_GET['page']=='Deconnexion')
 				
 				case 'espace_validation_demandes':
 				include('/Pages/espace_validation_demandes.php');
+				break;
+				
+				case 'espace_validation_corrections':
+				include('/Pages/espace_validation_corrections.php');
 				break;
 				
 				default:
