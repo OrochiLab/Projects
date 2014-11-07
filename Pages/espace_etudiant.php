@@ -6,7 +6,7 @@
 		<br/><br/>
 
 		<h4>Espace Etudiant</h4>
-		<p class="lead"></p>
+		<br/>
 		<div class="row">
 
 			<div class="large-3 columns">

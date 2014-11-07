@@ -4,10 +4,11 @@ require_once('Metier/EtudiantManager.class.php');
 require_once('Metier/DemandeManager.class.php');
 require_once('Metier/CorrectionManager.class.php');
 
-if(isset($_POST['cne']) or isset($_SESSION['cne']))
+if(isset($_SESSION['cne']))
 {	
-		$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
-		header('Location : http://www.google.com');
+		$etudiant = EtudiantManager::getById($_SESSION['cne']);
+			
+		
 		if(isset($_POST['btn']))
 		{
 		$resultat = CorrectionManager::demanderCorrection($_POST['cin'],$_POST['nom'],$_POST['prenom'],$_POST['daten'],$_POST['email'],$etudiant->getCne());

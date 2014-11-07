@@ -1,16 +1,27 @@
+<?php
+if(isset($_SESSION['login']))
+{
 
-	
+?>
 	<div class="row"><br></div>
-
-	<div data-alert class="row alert-box">
+	<div data-alert class="alert-box">
 	  <!-- Your content goes here -->
-	  Bienvenue a votre espace administrateur!
+	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
-	<div class="row">Liste des filières 2014
+	<div>Liste des filières 2014
 		<blockquote> Ecole Nationale des Sciences Appliquées Khouribga 2014.<cite>M<sup>ed</sup> Amine & Mouad</cite></blockquote>
 	</div>
-	<div class="row">
+	<ul class="pricing-table">
+								
+								<li class="title">Quelques statistiques :</li>
+								<li class="bullet-item">Nombre de demandes d'attestation traités :</li>
+								<li class="bullet-item">Nombre de demandes de correction traités: </li>
+								<li class="bullet-item">Répartition des demandes par filière : </li>
+							
+							</ul>
+	<div>
 		<div class="large-12 colums">
+		
 			<table>
 			  <thead>
 			    <tr>
@@ -40,3 +51,14 @@
 
 		</div>
 	</div>
+<?php
+}
+else
+{?>
+						<div data-alert class="alert-box alert radius" style="opacity:0.8">
+						Erreur 404 : Access Denied<br/>
+						<a href="?page=accueil">Retour</a>
+						</div>
+<?php
+}
+?>

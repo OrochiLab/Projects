@@ -5,11 +5,21 @@ require_once('Etudiant.class.php');
 class SessionManager
 {
 
-	public static function Connecter(Personne $etudiant)
+	public static function Connecter(Personne $visiteur)
 	{
-		$_SESSION['cne']=$etudiant->getCne();
-		$_SESSION['nom']=$etudiant->getNom();
-		$_SESSION['prenom']=$etudiant->getPrenom();
+		
+		$_SESSION['nom']=$visiteur->getNom();
+		$_SESSION['prenom']=$visiteur->getPrenom();
+		if($visiteur instanceof Etudiant)
+		{
+		$_SESSION['cne']=$visiteur->getCne();
+		$_SESSION['type']='Etudiant';
+		}
+		else
+		{
+		$_SESSION['login']=$visiteur->getLogin();
+		$_SESSION['type']='Administrateur';
+		}
 	}
 
 	

@@ -1,6 +1,22 @@
 <?php
-session_start();
 require_once('Metier/DemandeManager.class.php');
+require_once('Metier/AdministrateurManager.class.php');
+require_once('Metier/EtudiantManager.class.php');
+
+session_start();
+if(isset($_POST['cne']))
+{	
+		
+	$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
+}
+if(isset($_POST['login']) and isset($_POST['password']))
+{
+	$administrateur = AdministrateurManager::getByLogin($_POST['login'],$_POST['password']);
+	
+}
+
+
+
 
 if(!isset($_GET['page']))
 	$_GET['page']='accueil';
@@ -33,13 +49,32 @@ if($_GET['page']=='Deconnexion')
 			<section class="top-bar-section">
 				<ul class="right">
 					<?php
-					if(isset($_SESSION['cne']))
+					if(isset($_SESSION['type']))
 					{
 					?>
 					<li class="divider"></li>
+						<?php
+						if($_SESSION['type']=='Etudiant')
+						{
+						?>
 					<li <?php if($_GET['page']=='espace_demandes_etudiant') echo 'class="active"' ?>><a href="?page=espace_demandes_etudiant">Demandes d'attestation</a></li>
+						<?php
+						}
+						else
+						{
+						?>
+						<li class="has-dropdown"><a href="#">Demandes des étudiants</a>
+						<ul class="dropdown">
+						<li><a href="#">Demandes d'attestation</a></li>
+						<li><a href="#">Demandes de correction</a></li>
+						</ul>
+						</li>
+						<?php
+						}
+						?>
+						
 					<li class="divider"></li>
-					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant') echo 'active' ?> has-dropdown"><a href="?page=Espace_de_gestion_etudiant">Profil : <?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
+					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant' ) echo 'active' ?> has-dropdown"><a href="?page=<?php echo ($_SESSION['type']=='Etudiant')?'Espace_de_gestion_etudiant':'Espace_de_gestion_administrateur'?>"><?php echo $_SESSION['type'].' : '.htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
 					<ul class="dropdown">
                     <li><a href="?page=Deconnexion">Se Deconnecter</a></li>
 					</ul>
@@ -50,9 +85,9 @@ if($_GET['page']=='Deconnexion')
 					{
 					?>
 					<li class="divider"></li>
-					<li><a href="?page=etudiant">Espace Etudiant</a></li>
+					<li <?php if($_GET['page']=='etudiant') echo 'class="active"' ?>><a href="?page=etudiant">Espace Etudiant</a></li>
 					<li class="divider"></li>
-					<li><a href="?page=administration">Espace Administration</a></li>
+					<li <?php if($_GET['page']=='administration') echo 'class="active"' ?>><a href="?page=administration">Espace Administration</a></li>
 					<?php
 					}
 					?>
