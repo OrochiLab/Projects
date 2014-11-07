@@ -7,7 +7,8 @@ text-align:center;
 <?php
 if(isset($_SESSION['login']))
 {
-
+	
+	
 ?>
 
 
@@ -16,6 +17,30 @@ if(isset($_SESSION['login']))
 	  <!-- Your content goes here -->
 	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
+	  <?php
+		$retour=false;
+		if(isset($_POST['accepter']))
+			$retour = ValidationManager::traiterDemande($_POST['demande'],'Valide');
+		if(isset($_POST['refuser']))
+			$retour = ValidationManager::traiterDemande($_POST['demande'],'Refus');
+		if(isset($_POST['reaccepter']))
+			$retour = ValidationManager::reaccepterDemande($_POST['demande']);
+		
+		if(isset($_POST['accepter']) or isset($_POST['refuser']) or isset($_POST['reaccepter']))
+		{
+	  ?>
+			<div data-alert class="alert-box secondary radius">
+			<?php
+			if($retour and (isset($_POST['accepter']) or isset($_POST['reaccepter'])))
+				echo 'Demande N° <strong>'.$_POST['demande'].'</strong> acceptée.';
+			else if($retour and isset($_POST['refuser']))
+				echo 'Demande N° <strong>'.$_POST['demande'].'</strong> refusée.';
+			?>
+			<a href="#" class="close">&times;</a>
+			</div>
+		<?php
+		}
+		?>
 	<dl class="sub-nav" style="float:left">
 		<dt>Filières:</dt>
 		<dd class="active"><a href="#" id="fil-TOUT" class="criteria">Tout</a></dd>
@@ -61,25 +86,27 @@ if(isset($_SESSION['login']))
 					<th><?php echo ($demandes[$i]->getValidation()->getReponse()=='Refus')?'Refusée':(($demandes[$i]->getValidation()->getReponse()=='Valide')?'Acceptée':'En Attente...');?></th>
 					<th><?php echo $demandes[$i]->getValidation()->getDate_Validation(); ?></th>
 					<th>
-					<form action="#" method="post">	
+					<form action="#" method="post">
+					<input type="hidden" name="demande" value="<?php echo $demandes[$i]->getId(); ?>" />
 					<?php
 					if($demandes[$i]->getValidation()->getReponse()!='Refus' and $demandes[$i]->getValidation()->getReponse()!='Valide')
 					{
+					
 					?>
-					 <button class="button tiny" type="submit">Accepter</button>
-					 <button class="button tiny alert" type="submit">Refuser</button>
+					 <button class="button tiny" type="submit" name="accepter" style="background-color:rgb(0,100,0);">Accepter</button>
+					 <button class="button tiny alert" type="submit" name="refuser" >Refuser</button>
 					<?php
 					}
 					else if($demandes[$i]->getValidation()->getReponse()=='Refus')
 					{
 					?>
-					<button class="button tiny" type="submit">Reaccepter</button>
+					<button class="button tiny" type="submit" name="reaccepter">Reaccepter</button>
 					<?php
 					}
 					else
 					{
 					?>
-					<button class="button tiny" type="submit">Télécharger</button>
+					<button class="button tiny" >Télécharger</button>
 					<?php
 					}
 					?>

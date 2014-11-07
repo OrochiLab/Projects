@@ -66,7 +66,7 @@ if($_GET['page']=='Deconnexion')
 						?>
 						<li class="has-dropdown"><a href="#">Demandes des étudiants</a>
 						<ul class="dropdown">
-						<li><a href="?page=espace_validation_demandes">Demandes d'attestation</a></li>
+						<li class=" <?php if($_GET['page']=='espace_validation_demandes' ) echo 'active' ?>" ><a href="?page=espace_validation_demandes">Demandes d'attestation</a></li>
 						<li><a href="#">Demandes de correction</a></li>
 						</ul>
 						</li>
@@ -75,7 +75,7 @@ if($_GET['page']=='Deconnexion')
 						?>
 						
 					<li class="divider"></li>
-					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant' ) echo 'active' ?> has-dropdown"><a href="?page=<?php echo ($_SESSION['type']=='Etudiant')?'Espace_de_gestion_etudiant':'Espace_de_gestion_administrateur'?>"><?php echo $_SESSION['type'].' : '.htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
+					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant' and $_GET['page']!='espace_validation_demandes') echo 'active' ?> has-dropdown"><a href="?page=<?php echo ($_SESSION['type']=='Etudiant')?'Espace_de_gestion_etudiant':'Espace_de_gestion_administrateur'?>"><?php echo $_SESSION['type'].' : '.htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
 					<ul class="dropdown">
                     <li><a href="?page=Deconnexion">Se Deconnecter</a></li>
 					</ul>
