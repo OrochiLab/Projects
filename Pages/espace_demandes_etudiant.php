@@ -76,8 +76,6 @@ if(isset($_SESSION['cne']))
 									?>
 									</tbody>
 								</table>
-								
-								<!--<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_2" Demander une attestation	</a></li>-->
 								 <form method="post" action="#">
 								 <li class="cta-button"><a><button class="button small" type="submit" name="btn">Demander une attestation</button></a></li>
 								</form>

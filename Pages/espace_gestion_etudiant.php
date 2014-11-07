@@ -2,11 +2,18 @@
 require_once('Metier/Database.class.php');
 require_once('Metier/EtudiantManager.class.php');
 require_once('Metier/DemandeManager.class.php');
+require_once('Metier/CorrectionManager.class.php');
 
 if(isset($_POST['cne']) or isset($_SESSION['cne']))
 {	
 		$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
 		header('Location : http://www.google.com');
+		if(isset($_POST['btn']))
+		{
+		$resultat = CorrectionManager::demanderCorrection($_POST['cin'],$_POST['nom'],$_POST['prenom'],$_POST['daten'],$_POST['email'],$etudiant->getCne());
+		$alert_type = ((explode("#",$resultat)[0]=='Orange')?"warning":"success");
+		$resultat= explode("#",$resultat)[1];
+		}
 ?>
   	  	<div class="off-canvas-wrap" data-offcanvas>
 		
@@ -33,10 +40,25 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 								<!-- Your content goes here -->
 								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant!
 								</div>
+								<?php
+								if(isset($_POST['btn']))
+								{
+								?>
+								<div data-alert class="alert-box <?php echo $alert_type; ?> radius">
+								<?php echo $resultat; ?>
+								<a href="#" class="close">&times;</a>
+								</div>
+								<?php
+								}
+								else
+								{
+								?>
 								<blockquote>Vous avez la possibilité de consulter vos informations,
-								lister les demandes d'attestations et leurs état, et en faire des nouvelles.<cite>M<sup>ed</sup> Amine & Mouad</cite>
+								lister les demandes d'attestations et leurs état, et en faire des nouvelles.<cite>Cordialement, Administrateur</cite>
 								</blockquote>
-							
+								<?php
+								}
+								?>
 								<li class="title">Vos informations :</li>
 								<li class="bullet-item">CNE : <?php echo $etudiant->getCne(); ?></li>
 								<li class="bullet-item">CIN : <?php echo $etudiant->getCin(); ?></li>
@@ -78,10 +100,10 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 		</style>
 		<!-- Demande modifications des données-->
 		<div id="myModal_1"class="reveal-modal" width="100px" data-reveal>
-			<h4>Demande de modification</h4>
+			<h4>Demande de correction</h4>
 			<div class="row collapse">
 				<div class="large-12 columns">
-					<form data-abide role="form" novalidate action="">
+					<form data-abide role="form" method="post" action="#">
 					  <div class="name-field">
 					    <label>Votre Nom<small></small>
 					      <input type="text" name ="nom" pattern="^[a-zA-Z]+$" required="required" value="<?php echo $etudiant->getNom(); ?>">
@@ -95,16 +117,16 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 					    <small class="error">votre nom doit absolument être composé de caractères aplhabétiques.</small>
 					  </div>
 					  <div class="name-field">
-					    <label>Votre CNE* <small>*Code National Etudiant.</small>
-					      <input type="text" name="cne" id="cne" pattern="^[0-9]{10}$" required="required" value="<?php echo $etudiant->getCne();?>">
+					    <label>Votre Date de naissance
+					      <input type="date" name="daten" id="cne" required="required" value="<?php echo $etudiant->getDate_Naissance();?>">
 					    </label>
-					    <small class="error">votre CNE doit absolument être composé de 10 chiffres.</small>
+					    <small class="error">Veuillez entrer une date correcte.</small>
 					  </div>
 					  <div class="name-field">
 					    <label>Votre CIN* <small>*Carte Identitée Nationale.</small>
 					      <input type="text" name="cin" id="cin" pattern="^[a-zA-Z0-9]+$" required="required" value="<?php echo $etudiant->getCin();?>">
 					    </label>
-					    <small class="error">votre CIN doit absolument être composé d'un combinaison des caractaires alphanumeriques.</small>
+					    <small class="error">votre CIN doit absolument être composé d'une combinaison des caractères alphanumeriques.</small>
 					  </div>
 					  <div class="email-field">
 					    <label>Votre Email <small>Exemple@exemple.com</small>
@@ -112,7 +134,7 @@ if(isset($_POST['cne']) or isset($_SESSION['cne']))
 					    </label>
 					    <small class="error">votre Email doit absolument respecte la frome suivante exemple@exemple.com</small>
 					  </div>
-					  <button type="submit">Envoyer</button>
+					  <button class="button small" type="submit" name="btn">Envoyer</button>
 					</form>
 				</div>
 				<a class="close-reveal-modal">&#215;</a>

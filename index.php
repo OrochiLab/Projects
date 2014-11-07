@@ -37,9 +37,9 @@ if($_GET['page']=='Deconnexion')
 					{
 					?>
 					<li class="divider"></li>
-					<li><a href="?page=espace_demandes_etudiant">Demandes d'attestation</a></li>
+					<li <?php if($_GET['page']=='espace_demandes_etudiant') echo 'class="active"' ?>><a href="?page=espace_demandes_etudiant">Demandes d'attestation</a></li>
 					<li class="divider"></li>
-					<li class="active has-dropdown"><a href="?page=Espace_de_gestion_etudiant">Profil : <?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
+					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant') echo 'active' ?> has-dropdown"><a href="?page=Espace_de_gestion_etudiant">Profil : <?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
 					<ul class="dropdown">
                     <li><a href="?page=Deconnexion">Se Deconnecter</a></li>
 					</ul>
