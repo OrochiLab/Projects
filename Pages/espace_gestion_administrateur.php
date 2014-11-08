@@ -72,7 +72,7 @@ if(isset($_SESSION['login']))
 			  	
 			  </div>-->
 			  <div class="medium-6" style="float:right;text-align:center;">
-			  <h5>Répartition des demandes par filière</h5>
+			  <h5><img src="img/reports.gif">Répartition des demandes par filière</h5>
 				<div id="canvas-holder" class="small-2 large-4 columns" >
 					<canvas id="graphe-stat" width="500" height="300" />
 				</div>
