@@ -45,9 +45,9 @@
 					{
 					?>
 					<li class="divider"></li>
-					<li <?php if($_GET['page']=='etudiant') echo 'class="active"' ?>><a href="?page=etudiant"><i class="icon-white icon-book"></i> Espace Etudiant</a></li>
+					<li <?php if($_GET['page']=='etudiant') echo 'class="active"' ?>><a href="?page=etudiant"><div id="etudiantStop"><i class="icon-white icon-book"></i> Espace Etudiant</div></a></li>
 					<li class="divider"></li>
-					<li <?php if($_GET['page']=='administration') echo 'class="active"' ?>><a href="?page=administration"><i class="icon-white icon-star"></i> Espace Administration</a></li>
+					<li <?php if($_GET['page']=='administration') echo 'class="active"' ?>><a href="?page=administration"><div id="administrationStop"><i class="icon-white icon-star"></i> Espace Administration</div></a></li>
 					<?php
 					}
 					?>
