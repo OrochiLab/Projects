@@ -1,3 +1,3 @@
 <ul>
-	<div id="firstStop"><li><a href="?page=etudiant">Espace Etudiant</a></li></div>
+	<li><a href="?page=etudiant">Espace Etudiant</a></li>
 </ul>

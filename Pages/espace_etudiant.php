@@ -8,19 +8,21 @@
 		if(!isset($_SESSION['type']))
 		{
 		?>
-		<h4>Espace Etudiant</h4>
-		<br/>
-		<div class="row">
 
-			<div class="large-3 columns">
+		<div class="row">
+			<div class="large-12 columns" style="text-align:center">
 				<form data-abide role="form" method="POST" action='?page=Espace_de_gestion_etudiant'>
-				  <div class="name-field">
+				<fieldset>
+				<legend>Espace Etudiant</legend>
+				  <div class="name-field large-3" style="margin:auto;">
 				    <label>Votre CNE <small> obligatoire</small>
 				      <input type="password" id="cne" name="cne" required="required" pattern="^[0-9]{10}$">
 				    </label>
 				    <small class="error">le CNE se compose de 10 chiffre.</small>
+					<button class="button tiny" type="submit">Soumettre</button>
 				  </div>
-				  <button class="button small" type="submit">Soumettre</button>
+				  
+				 </fieldset>
 				</form>
 			</div>
 	
