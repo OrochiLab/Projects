@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 08 Novembre 2014 à 00:23
+-- Généré le: Sam 08 Novembre 2014 à 01:19
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `login` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`id`, `nom`, `prenom`, `login`, `password`) VALUES
-(1, 'Morabit', 'Mouad', 'yunho', 'lolilol');
+(1, 'Morabit', 'Mouad', 'yunho', 'e54ca0f451fa67adfdc259e3a21a86b1a9f5dc67');
 
 -- --------------------------------------------------------
 

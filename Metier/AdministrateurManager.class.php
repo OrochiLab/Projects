@@ -13,7 +13,7 @@ class AdministrateurManager
 			$rep->execute(
 			array(
 			'login'=>$login,
-			'password'=>$password
+			'password'=>sha1($password)
 			));
 			
 			if($donnes=$rep->fetch())

@@ -93,10 +93,7 @@ if($_GET['page']=='Deconnexion')
 				break;
 			}
 		}
-		else
-		{
-			include('/Pages/accueil.php');
-		}
+		
 	?>
 	</div>
 	</div>
