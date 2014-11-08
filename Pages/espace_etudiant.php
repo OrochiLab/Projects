@@ -47,4 +47,3 @@
     <script type="text/javascript" src="js/news.js"></script>
     <script type="text/javascript" src="js/Ajaxification.js"></script>
 	<!-- S'authentifier-->
-
