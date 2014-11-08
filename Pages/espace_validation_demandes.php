@@ -93,7 +93,7 @@ if(isset($_SESSION['login']))
 					{
 					
 					?>
-					 <button class="button tiny" type="submit" name="accepter" style="background-color:rgb(0,100,0);">Accepter</button>
+					 <button class="button tiny success" type="submit" name="accepter">Accepter</button>
 					 <button class="button tiny alert" type="submit" name="refuser" >Refuser</button>
 					<?php
 					}
