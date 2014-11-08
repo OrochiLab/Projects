@@ -8,12 +8,14 @@ if(isset($_POST['cne']))
 {	
 		
 	$etudiant = EtudiantManager::getById(((isset($_POST['cne']))?$_POST['cne']:$_SESSION['cne']));
-	SessionManager::Connecter($etudiant);
+	if(isset($etudiant))
+		SessionManager::Connecter($etudiant);
 }
 if(isset($_POST['login']) and isset($_POST['password']))
 {
 	$administrateur = AdministrateurManager::getByLogin($_POST['login'],$_POST['password']);
-	SessionManager::Connecter($administrateur);
+	if(isset($administrateur))
+		SessionManager::Connecter($administrateur);
 }
 
 
