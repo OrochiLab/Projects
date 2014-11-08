@@ -13,7 +13,7 @@ if(isset($_SESSION['login']))
 	<div class="row"><br></div>
 	<div data-alert class="alert-box">
 	  <!-- Your content goes here -->
-	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
+	  <i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
 	<div>
 		<div class="large-12 colums">

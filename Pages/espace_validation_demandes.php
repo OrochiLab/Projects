@@ -15,7 +15,7 @@ if(isset($_SESSION['login']))
 	<div class="row"><br></div>
 	<div data-alert class="alert-box">
 	  <!-- Your content goes here -->
-	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
+	  <i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
 	  <?php
 		$retour=false;
@@ -80,7 +80,7 @@ if(isset($_SESSION['login']))
 				?>
 				<tr class="row-<?php echo $demandes[$i]->getEtudiant()->getFiliere()->getId();?> row-<?php echo ($demandes[$i]->getValidation()->getReponse()=='Refus')?'REF':(($demandes[$i]->getValidation()->getReponse()=='Valide')?'VAL':'ATT');?>">
 					<th><?php echo $demandes[$i]->getId(); ?></th>
-					<th><a href="?page=details_etudiant&cne=<?php echo $demandes[$i]->getEtudiant()->getCne(); ?>"><?php echo $demandes[$i]->getEtudiant()->getNom().' '.$demandes[$i]->getEtudiant()->getPrenom(); ?></a></th>
+					<th><a href="?page=details_etudiant&cne=<?php echo $demandes[$i]->getEtudiant()->getCne(); ?>"><i class="icon-search"></i> <?php echo $demandes[$i]->getEtudiant()->getNom().' '.$demandes[$i]->getEtudiant()->getPrenom(); ?></a></th>
 					<th><?php echo $demandes[$i]->getEtudiant()->getFiliere()->getLibelle(); ?></th>
 					<th><?php echo $demandes[$i]->getDate_Demande(); ?></th>
 					<th><?php echo ($demandes[$i]->getValidation()->getReponse()=='Refus')?'Refusée':(($demandes[$i]->getValidation()->getReponse()=='Valide')?'Acceptée':'En Attente...');?></th>
@@ -93,20 +93,20 @@ if(isset($_SESSION['login']))
 					{
 					
 					?>
-					 <button class="button tiny success" type="submit" name="accepter">Accepter</button>
-					 <button class="button tiny alert" type="submit" name="refuser" >Refuser</button>
+					 <button class="button tiny success" type="submit" name="accepter"><i class="icon-white icon-ok"></i><br/></button>
+					 <button class="button tiny alert" type="submit" name="refuser" ><i class="icon-white icon-remove"></i><br/></button>
 					<?php
 					}
 					else if($demandes[$i]->getValidation()->getReponse()=='Refus')
 					{
 					?>
-					<button class="button tiny" type="submit" name="reaccepter">Reaccepter</button>
+					<button class="button tiny" type="submit" name="reaccepter"><i class="icon-white icon-ok"></i><br/>Reaccepter</button>
 					<?php
 					}
 					else
 					{
 					?>
-					<a href="../Projects/Pages/Pdf_admin.php?nomAdmin=<?php echo $_SESSION['nom'];?>&prenomAdmin=<?php echo $_SESSION['prenom'];?>&ID_Etudiant=<?php echo $demandes[$i]->getEtudiant()->getCne();?>" class="button tiny" />Télécharger
+					<a href="../Projects/Pages/Pdf_admin.php?nomAdmin=<?php echo $_SESSION['nom'];?>&prenomAdmin=<?php echo $_SESSION['prenom'];?>&ID_Etudiant=<?php echo $demandes[$i]->getEtudiant()->getCne();?>" class="button tiny" ><i class="icon-white icon-hdd"></i>Télécharger</a>
 					<?php
 					}
 					?>

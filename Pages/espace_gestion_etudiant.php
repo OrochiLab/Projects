@@ -39,7 +39,7 @@ if(isset($_SESSION['cne']))
 							<ul class="pricing-table">
 								<div data-alert class="alert-box">
 								<!-- Your content goes here -->
-								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant!
+								<i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant!
 								</div>
 								<?php
 								if(isset($_POST['btn']))
@@ -60,13 +60,13 @@ if(isset($_SESSION['cne']))
 								<?php
 								}
 								?>
-								<li class="title">Vos informations :</li>
+								<li class="title"><i class="icon-white icon-list-alt"></i> Vos informations</li>
 								<li class="bullet-item">CNE : <?php echo $etudiant->getCne(); ?></li>
 								<li class="bullet-item">CIN : <?php echo $etudiant->getCin(); ?></li>
 								<li class="bullet-item">Nom & Prenom : <?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></li>
 								<li class="bullet-item">Date de naissance : <?php echo $etudiant->getDate_Naissance(); ?></li>
 								<li class="bullet-item">Filière : <?php echo $etudiant->getFiliere()->getLibelle(); ?></li>
-								<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_1">Demande de modification de données</a></li>
+								<li class="cta-button"><a class="button small" href="#" data-reveal-id="myModal_1"><i class="icon-white icon-edit"></i> Demande de modification de données</a></li>
 							
 							</ul>
 							

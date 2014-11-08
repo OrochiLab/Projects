@@ -25,7 +25,7 @@ if(isset($_SESSION['login']))
 	<div class="row"><br></div>
 	<div data-alert class="alert-box">
 	  <!-- Your content goes here -->
-	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
+	  <i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	  </div>
 	<?php
 		$retour=false;
@@ -84,7 +84,7 @@ if(isset($_SESSION['login']))
 				{
 				?>
 				<tr>
-					<td><a href="?page=details_etudiant&cne=<?php echo $corrections[$i]->getEtudiant()->getCne(); ?>"><strong><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></strong></a></td>
+					<td><a href="?page=details_etudiant&cne=<?php echo $corrections[$i]->getEtudiant()->getCne(); ?>"><i class="icon-search"></i> <strong><?php echo $corrections[$i]->getEtudiant()->getCne(); ?></strong></a></td>
 					<td><?php echo $corrections[$i]->getDate_Correction(); ?></td>
 					
 					<td class="red"><?php echo $corrections[$i]->getEtudiant()->getCin(); ?></td>

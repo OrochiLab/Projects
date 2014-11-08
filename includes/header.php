@@ -2,7 +2,7 @@
   		<nav class="top-bar foundation-bar" data-topbar>
 				<ul class="title-area">
 					<li class="name">
-					<h1><a href="?page=accueil">ENSA Khouribga</a></h1>
+					<h1><a href="?page=accueil"><i class="icon-white icon-home"></i> ENSA Khouribga</a></h1>
 					</li>
 				</ul>
 			
@@ -34,9 +34,9 @@
 						?>
 						
 					<li class="divider"></li>
-					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant' and $_GET['page']!='espace_validation_demandes') echo 'active' ?> has-dropdown"><a href="?page=<?php echo ($_SESSION['type']=='Etudiant')?'Espace_de_gestion_etudiant':'Espace_de_gestion_administrateur'?>"><?php echo $_SESSION['type'].' : '.htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
+					<li class=" <?php if($_GET['page']!='espace_demandes_etudiant' and $_GET['page']!='espace_validation_demandes') echo 'active' ?> has-dropdown"><a href="?page=<?php echo ($_SESSION['type']=='Etudiant')?'Espace_de_gestion_etudiant':'Espace_de_gestion_administrateur'?>"><i class="icon-white icon-user"></i> <?php echo $_SESSION['type'].' : '.htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></a>
 					<ul class="dropdown">
-                    <li><a href="?page=Deconnexion">Se Deconnecter</a></li>
+                    <li><a href="?page=Deconnexion"><i class="icon-white icon-off"></i> Se Deconnecter</a></li>
 					</ul>
 					</li>
 					<?php
@@ -45,9 +45,9 @@
 					{
 					?>
 					<li class="divider"></li>
-					<li <?php if($_GET['page']=='etudiant') echo 'class="active"' ?>><a href="?page=etudiant">Espace Etudiant</a></li>
+					<li <?php if($_GET['page']=='etudiant') echo 'class="active"' ?>><a href="?page=etudiant"><i class="icon-white icon-book"></i> Espace Etudiant</a></li>
 					<li class="divider"></li>
-					<li <?php if($_GET['page']=='administration') echo 'class="active"' ?>><a href="?page=administration">Espace Administration</a></li>
+					<li <?php if($_GET['page']=='administration') echo 'class="active"' ?>><a href="?page=administration"><i class="icon-white icon-star"></i> Espace Administration</a></li>
 					<?php
 					}
 					?>

@@ -37,7 +37,7 @@ if(isset($_SESSION['cne']))
 							<ul class="pricing-table">
 								<div data-alert class="alert-box">
 								<!-- Your content goes here -->
-								Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant, quelques informations à savoir à propos des demandes :<br/><br/>
+								<i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong> dans votre espace etudiant, quelques informations à savoir à propos des demandes :<br/><br/>
 								- Une demande par semaine ( pour éviter l'abus de demandes )<br/>
 								- Une attestation validée par mois au maximum
 								</div>
@@ -77,7 +77,7 @@ if(isset($_SESSION['cne']))
 									</tbody>
 								</table>
 								 <form method="post" action="#">
-								 <li class="cta-button"><a><button class="button small" type="submit" name="btn">Demander une attestation</button></a></li>
+								 <li class="cta-button"><a><button class="button small" type="submit" name="btn"><i class="icon-white icon-list-alt"></i> Demander une attestation</button></a></li>
 								</form>
 							</ul>
 							

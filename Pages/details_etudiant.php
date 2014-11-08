@@ -16,7 +16,7 @@ if(isset($_SESSION['login']))
 	<div class="row"><br></div>
 	<div data-alert class="alert-box">
 	  <!-- Your content goes here -->
-	  Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
+	  <i class="icon-white icon-bell"></i> Bienvenue <strong><?php echo htmlspecialchars($_SESSION['nom'].' '.$_SESSION['prenom']);?></strong> a votre espace d'administration!
 	 </div>
 	<div>
 		<div class="large-12 colums">
@@ -27,13 +27,13 @@ if(isset($_SESSION['login']))
 		
 			?>
 			<ul class="pricing-table">
-				<li class="title">Informations de l'étudiant :</li>
-				<li class="bullet-item">CNE : <?php echo $etudiant->getCne(); ?></li>
-				<li class="bullet-item">CIN : <?php echo $etudiant->getCin(); ?></li>
-				<li class="bullet-item">Nom & Prenom : <?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></li>
-				<li class="bullet-item">Date de naissance : <?php echo $etudiant->getDate_Naissance(); ?></li>
-				<li class="bullet-item">Filière : <?php echo $etudiant->getFiliere()->getLibelle(); ?></li>	
-				<li class="title">Historique des demandes de l'étudiant :</li>
+				<li class="title"> <i class="icon-white icon-list-alt"></i> Informations de l'étudiant</li>
+				<li class="bullet-item">CNE : <strong><?php echo $etudiant->getCne(); ?></strong></li>
+				<li class="bullet-item">CIN : <strong><?php echo $etudiant->getCin(); ?></strong></li>
+				<li class="bullet-item">Nom & Prenom : <strong><?php echo $etudiant->getNom().' '.$etudiant->getPrenom(); ?></strong></li>
+				<li class="bullet-item">Date de naissance : <strong><?php echo $etudiant->getDate_Naissance(); ?></strong></li>
+				<li class="bullet-item">Filière : <strong><?php echo $etudiant->getFiliere()->getLibelle(); ?></strong></li>	
+				<li class="title"><i class="icon-white icon-folder-open"></i> Historique des demandes de l'étudiant</li>
 				<table class="large-12" >
 				<thead>
 					<tr>
