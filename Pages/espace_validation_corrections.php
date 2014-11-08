@@ -40,9 +40,9 @@ if(isset($_SESSION['login']))
 			<div data-alert class="alert-box secondary radius">
 			<?php
 			if($retour and (isset($_POST['accepter']) or isset($_POST['reaccepter'])))
-				echo utf8_decode('Demande N° <strong>'.$_POST['demande'].'</strong> acceptée, les données de l\'étudiant sont mit a jour.');
+				echo 'Demande N° <strong>'.$_POST['demande'].'</strong> acceptée, les données de l\'étudiant sont mit a jour.';
 			else if($retour and isset($_POST['refuser']))
-				echo utf8_decode('Demande N° <strong>'.$_POST['demande'].'</strong> refusée.');
+				echo 'Demande N° <strong>'.$_POST['demande'].'</strong> refusée.';
 			?>
 			<a href="#" class="close">&times;</a>
 			</div>
@@ -108,8 +108,8 @@ if(isset($_SESSION['login']))
 					{
 					
 					?>
-					 <button class="button tiny success" type="submit" name="accepter" >Accepter</button>
-					 <button class="button tiny alert" type="submit" name="refuser" >Refuser</button>
+					 <button class="button tiny success" type="submit" name="accepter" ><i class="icon-white icon-ok"></i></button>
+					 <button class="button tiny alert" type="submit" name="refuser" ><i class="icon-white icon-remove"></i></button>
 					<?php
 					}
 					else if($corrections[$i]->getEtat()=='Refus')
