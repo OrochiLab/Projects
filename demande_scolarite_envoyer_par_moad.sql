@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 07 Novembre 2014 à 17:48
+-- Généré le: Sam 08 Novembre 2014 à 00:23
 -- Version du serveur: 5.5.24-log
 -- Version de PHP: 5.4.3
 
@@ -58,18 +58,17 @@ CREATE TABLE IF NOT EXISTS `correction` (
   `date_naissance` date NOT NULL,
   `email` varchar(200) NOT NULL,
   `cne` varchar(10) NOT NULL,
-  `etat` enum('En Attente','Acceptée','Refusée') NOT NULL DEFAULT 'En Attente',
+  `etat` enum('Attente','Valide','Refus') NOT NULL DEFAULT 'Attente',
   PRIMARY KEY (`id`),
   KEY `cne` (`cne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Contenu de la table `correction`
 --
 
 INSERT INTO `correction` (`id`, `date_demandec`, `cin`, `nom`, `prenom`, `date_naissance`, `email`, `cne`, `etat`) VALUES
-(3, '2014-08-10 02:36:37', 'BK275058', 'Morabit', 'Mouad', '1993-08-11', 'lolilol@lol.com', '1129377653', 'Acceptée'),
-(4, '2014-11-07 16:03:07', 'AB234567', 'Zine', 'Omar', '1993-11-10', 'omar@imane.com', '1129377641', 'Refusée');
+(7, '2014-11-07 22:41:51', 'BK275058', 'Morabit Yunho', 'Mouad', '1993-08-11', 'mouad2005@hotmail.com', '1129377653', 'Valide');
 
 -- --------------------------------------------------------
 
@@ -83,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `demande` (
   `CNE` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `CNE` (`CNE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `demande`
@@ -95,7 +94,8 @@ INSERT INTO `demande` (`id`, `date_demande`, `CNE`) VALUES
 (11, '2014-11-07 00:00:00', '1129377653'),
 (12, '2014-11-07 00:00:00', '1129377640'),
 (13, '2014-11-07 00:00:00', '1129377642'),
-(14, '2014-11-07 15:57:55', '1129377641');
+(14, '2014-11-07 15:57:55', '1129377641'),
+(15, '2014-11-01 00:00:00', '1129377642');
 
 -- --------------------------------------------------------
 
@@ -208,16 +208,18 @@ CREATE TABLE IF NOT EXISTS `validation` (
   PRIMARY KEY (`id`),
   KEY `id_dem` (`id_dem`),
   KEY `id_admin` (`id_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20 ;
 
 --
 -- Contenu de la table `validation`
 --
 
 INSERT INTO `validation` (`id`, `date_validation`, `id_dem`, `id_admin`, `reponse`) VALUES
-(8, '2014-11-07 00:00:00', 9, 1, 'Valide'),
-(9, '2014-11-07 00:00:00', 10, 1, 'Valide'),
-(10, '2014-11-07 00:00:00', 12, 1, 'Refus');
+(15, '2014-11-07 21:00:18', 14, 1, 'Valide'),
+(16, '2014-11-07 21:00:21', 10, 1, 'Valide'),
+(17, '2014-11-07 21:00:29', 13, 1, 'Valide'),
+(18, '2014-11-07 21:00:32', 9, 1, 'Refus'),
+(19, '2014-11-07 21:00:40', 11, 1, 'Valide');
 
 --
 -- Contraintes pour les tables exportées
