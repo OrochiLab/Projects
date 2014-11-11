@@ -79,6 +79,20 @@
 
 				$this->Ln(40);
 				$this->MultiCell(0,10,utf8_decode("Signature et Cachet"));
+					$today = date('d/m/Y');
+					$tab = explode("/",$today);
+					
+				if (!file_exists('../Certificats')) {
+					
+					mkdir('../Certificats', 0777, true);
+					
+				}
+				if(!file_exists('../Certificats/'.$tab[0].'_'.$tab[1].'_'.$tab[2]))
+				{
+					mkdir('../Certificats/'.$tab[0].'_'.$tab[1].'_'.$tab[2],0777,true);
+				}
+				
+				$this->Output('../Certificats/'.$tab[0].'_'.$tab[1].'_'.$tab[2].'/'.$cne.'.pdf');
 				$this->Output();
 			}
 		}
